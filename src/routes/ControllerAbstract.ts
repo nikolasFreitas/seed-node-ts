@@ -1,16 +1,24 @@
 import Express, { Request, Response, NextFunction } from "express";
 
 export abstract class ControllerFormat {
-  constructor(private baseRouth: string, private app: Express.Router) {
+
+  constructor(private app: Express.Router, ) {
     this.startRoutes();
   }
 
   abstract routes(): RouteFormat[];
+  getBaseRoute(): string | undefined {
+    console.error("Not found base route");
+    return undefined;
+  };
 
   startRoutes(): void {
     const routes = this.routes();
+    if (!this.getBaseRoute()) {
+      throw new Error("No pathbase found")
+    }
     routes.forEach((route) => {
-      const path = this.baseRouth + route.path;
+      const path = this.getBaseRoute() + route.path;
 
       switch (route.method) {
         case "all":

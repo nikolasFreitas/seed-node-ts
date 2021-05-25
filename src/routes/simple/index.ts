@@ -1,10 +1,13 @@
 import Express from "express";
 import { ControllerFormat } from "../ControllerAbstract";
 import { RouteFormat } from "../ControllerAbstract";
+import { baseName } from "../decorator";
 
-export class SimpleObserversController extends ControllerFormat {
+@baseName("/simple")
+export class Notifier extends ControllerFormat {
+
   constructor(router: Express.Router) {
-    super("/simple", router);
+    super(router);
   }
 
   routes(): RouteFormat[] {

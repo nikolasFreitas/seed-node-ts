@@ -1,6 +1,6 @@
 import Express from "express";
-import { SimpleObserversController } from "./simple";
+import { Notifier } from "./simple";
 
 export const startControllers = (router: Express.Router) => {
-  new SimpleObserversController(router);
+  new Notifier(router);
 };
